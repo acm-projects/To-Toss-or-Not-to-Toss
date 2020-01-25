@@ -31,5 +31,9 @@ A camera page where the user can either take pictures or upload one and the app 
   - Java
 
 - ***IDE***
-  - Visual Studio Code
+  - Visual Studio Code 
   - Android Studio
+  
+### Suggestions:
+- VS Code is a great IDE and it looks a lot nicer than Android Studio xD so _highly_ recommend it
+- Flutter is very intuitive and similar to Java. It also has a hot reload feature which is very helpful. Only downside is that it not as compatible with Firebase, for example (you may use Firebase when implementing the login feature).
