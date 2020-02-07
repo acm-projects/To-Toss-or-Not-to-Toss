@@ -1,7 +1,7 @@
 # To-Toss-or-Not-to-Toss
 Mobile app designed to settle the question, "Is this recyclable?" through image recognition and machine learning.
 
-[Git Cheat Sheet](https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet)
+[**Git Cheat Sheet**](https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet)
 
 ### Summary:
 
