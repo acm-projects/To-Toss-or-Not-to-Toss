@@ -1,6 +1,8 @@
 # To-Toss-or-Not-to-Toss
 Mobile app designed to settle the question, "Is this recyclable?" through image recognition and machine learning.
 
+- [Git Cheat Sheet](https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet)
+
 ### Summary:
 
 Help save the environment and have fun, too! This app scans an object and determines if it is recyclable or not. Alternatively, users can input information about the object manually and answer questions to determine if it should be tossed or not. Users can gain points for every object they recycle and trade them for stickers and other rewards.
