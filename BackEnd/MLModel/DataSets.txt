@@ -1,0 +1,36 @@
+These are the DataSets used in the models
+
+------------------------------------------------------------------------------------
+Garbage Classification
+-------
+https://www.kaggle.com/asdasdasasdas/garbage-classification
+
+Classes -->
+    - Cardboard
+    - Glass
+    - Metal
+    - Paper
+    - Plastic
+    - Trash
+
+
+Models used in:
+     - UPDATED MLMODEL (Garbage Classification 6 CLASSES)(InceptionV3 
+
+------------------------------------------------------------------------------------
+Waste Classification (v2) (3 Classes)
+-------
+https://www.kaggle.com/sapal6/waste-classification-data-v2
+
+Classes --> 
+    - Recycle
+    - Organic
+    - Nonrecyclable
+
+
+Models used in:
+     - UPDATED MLModel (Waste Data v2 3 CLASSES)(MobileNet)
+     - UPDATED MLModel (Waste Data v2 3 CLASSES)(InceptionV3)
+
+------------------------------------------------------------------------------------
+
