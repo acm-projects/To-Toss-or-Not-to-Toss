@@ -44,6 +44,7 @@ flutter:
   assets:
     - assets/images/logo.png
     - assets/images/recycle.gif
+    - assets/images/city.png
 
   fonts:
     - family: Montserrat

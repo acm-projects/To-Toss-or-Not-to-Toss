@@ -1,12 +1,18 @@
+import 'dart:async';
+
+import 'package:first_toss/notrecycleable.dart';
+import 'package:first_toss/recycleable.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
-import './question.dart';
-import './Answer.dart';
-
-void main() => runApp(MyApp());
-
+void main()
+{
+  runApp(MaterialApp(
+    title: 'Navigation Basics',
+    home: MyApp(),
+  ));
+}
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -16,6 +22,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   int _questionIndex = 0;
   // This widget is the root of your application.
   void answerQuestion() {
@@ -35,47 +42,113 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  String value;
+  Future<File> imageFile;
+
   @override
   Widget build(BuildContext context) {
-    var questions = ['Press Action', 'Continue Action'];
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Main Menu'),
-          backgroundColor: Colors.teal,
-        ),
-        body: Container(
+      home: new Scaffold(
+        //appBar: AppBar(
+          //title: Text('Main Menu'),
+         //backgroundColor: Colors.teal,
+        //),
+        //backgroundColor: Colors.orange,
+        body: new Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              //crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Question(questions[_questionIndex]),
-            RaisedButton(
-              textColor: Colors.white,
-              color: Colors.teal,
-              child: Text('Take Picture'),
-              onPressed: () {
-                getImage(true);
-              },
+            Center(
+              child: SizedBox(
+                width: 290,
+                height: 55,
+                child:
+              RaisedButton(
+                elevation: 15,
+                shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(30.0),
+                  side: BorderSide(color: Colors.teal)),
+                onPressed: () {
+                  pickImageFrom(ImageSource.camera);
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) 
+                  => NotRecycleable(image: imageFile
+                  , val: value)),
+                  );
+                },
+                color: Colors.teal,
+                textColor: Colors.white,
+                child: Text("Take Picture",
+                  style: TextStyle(fontSize: 29)),
+              ),
+              ),
             ),
-            RaisedButton(
-              textColor: Colors.white,
-              color: Colors.blue,
-              child: Text('Upload from Gallery'),
-              onPressed: () {
-                getImage(false);
-              },
+            SizedBox( 
+              height: 25,
             ),
-            _image == null
-                ? Container(
-                )
-                : Image.file(
-                    _image,
-                    height: 400.0,
-                    width: 500.0,
-                  ),
+            SizedBox(
+              width: 290,
+              height: 55,
+              child:
+            RaisedButton(
+              elevation: 15,
+              shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(30.0),
+                side: BorderSide(color: Colors.teal)),
+              onPressed: () {
+                pickImageFrom(ImageSource.gallery);
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) 
+                => Recycleable(image: imageFile
+                , val: value)
+                ),
+                );
+              },
+              color: Colors.indigo,
+              textColor: Colors.white,
+              child: Text("Upload From Gallery",
+                style: TextStyle(fontSize: 25)),
+            ),
+            ),
           ],
         )),
       ),
     );
   }
+  
+  pickImageFrom(ImageSource source) {
+    setState(() {
+      imageFile = ImagePicker.pickImage(source: source);
+    });
+  }
+ 
+  Widget showImage() {
+    return FutureBuilder<File>(
+      future: imageFile,
+      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.data != null) {
+          return Image.file(
+            snapshot.data,
+            width: 300,
+            height: 300,
+          );
+        } else if (snapshot.error != null) {
+          return const Text(
+            'Error Picking Image',
+            textAlign: TextAlign.center,
+          );
+        } else {
+          return const Text(
+            'No Image Selected',
+            textAlign: TextAlign.center,
+          );
+        }
+      },
+    );
+  }
 }
+
