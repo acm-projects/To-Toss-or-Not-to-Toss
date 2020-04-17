@@ -25,7 +25,8 @@ class _PictureState extends State<Picture> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/city.png'),
-              fit: BoxFit.fitWidth,
+              fit: BoxFit.cover,
+              alignment: Alignment.bottomCenter,
               )
           ),
             child: Column(

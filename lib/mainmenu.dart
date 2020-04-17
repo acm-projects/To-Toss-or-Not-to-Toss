@@ -122,13 +122,13 @@ class MainMenuState extends State<MainMenu> {
 
   List<MenuItem> createMenuItems() {
     final menuItems = [
-      new MenuItem("Log in/ Sign up", 'assets/tre.png', Colors.black,
+      new MenuItem("Log in/ Sign up", 'assets/tree.png', Colors.black,
               () => new MyApp()),
       //new MenuItem("Scoreboard", 'assets/tree.png', Colors.black,
               //() => new scoreboard()),
       new MenuItem("Take Picture", 'assets/tree.png', Colors.black,
               () => new Picture()),
-      new MenuItem("Tree Progress", 'assets/tre.png', Colors.black,
+      new MenuItem("Tree Progress", 'assets/tree.png', Colors.black,
               () => new Gallery()),
     ];
     return menuItems;

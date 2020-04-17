@@ -38,11 +38,11 @@ class NetworkingPageHeader implements SliverPersistentHeaderDelegate {
         ),
         Positioned(
             //top:310,
-            left: -3,
+            left: -5,
             right: -5,
             bottom: -24.0,
             child: SizedBox(
-                height: 100,
+                height: 130,
                 child: Container(
                   child: Card(
                     shape: RoundedRectangleBorder(
@@ -56,11 +56,11 @@ class NetworkingPageHeader implements SliverPersistentHeaderDelegate {
                         const ListTile(
                           leading: Icon(Icons.check_circle_outline,
                               size: 55, color: Colors.green),
-                          title: Text('Recycleable!',
+                          title: Text('Your item is recycleable!',
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 45.0,
-                                  fontWeight: FontWeight.bold)),
+                                  fontSize: 35.0,
+                                  fontWeight: FontWeight.w500)),
                         ),
                       ],
                     ),

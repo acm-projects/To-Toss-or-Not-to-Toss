@@ -114,6 +114,6 @@ class NotNetworkingPageHeader implements SliverPersistentHeaderDelegate {
   FloatingHeaderSnapConfiguration get snapConfiguration => null;
 
   @override
-  // TODO: implement stretchConfiguration
+  //  implement stretchConfiguration
   OverScrollHeaderStretchConfiguration get stretchConfiguration => null;
 }

@@ -32,19 +32,14 @@ class _RecycleableState extends State<Recycleable>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text('Recycleable'),
-          backgroundColor: Colors.teal,
-          
-        ),
         body: CustomScrollView(
           slivers: <Widget>[
             SliverPersistentHeader(
             pinned: false,
-            floating: true,
+            floating: false,
             delegate: NetworkingPageHeader(
-              minExtent: 270.0,
-              maxExtent: 450.0,
+              minExtent: 70.0,
+              maxExtent: 500.0, //fix to fit
               image: image,
             ),
           ),
@@ -53,12 +48,18 @@ class _RecycleableState extends State<Recycleable>
               delegate: SliverChildListDelegate([
                 //Container(color: Colors.white),
                  Container(
+                   decoration: BoxDecoration(
+                     gradient: LinearGradient(colors: [Colors.white, 
+                     new Color.fromRGBO(132, 234, 130, 1.0)],
+                     begin: Alignment.topCenter,
+                     end: Alignment.bottomCenter)
+                   ),
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(35.0),
                     ),
                     color: new Color.fromRGBO(132, 234, 130, 1.0),
-                    elevation: 10,
+                    elevation: 0,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -115,16 +116,40 @@ class _RecycleableState extends State<Recycleable>
                         ),
                         )
                       ],
-
                     ),
                   ),
                 )
               ]),
             ),
-          ],
+            SliverFixedExtentList(
+              itemExtent: 500,
+              delegate: SliverChildListDelegate([
+                //Container(color: Colors.white),
+                 Container(
+                   decoration: BoxDecoration(
+                     gradient: LinearGradient(colors: [Colors.white, 
+                     new Color.fromRGBO(132, 234, 130, 1.0)],
+                     begin: Alignment.bottomCenter,
+                     end: Alignment.topCenter)
+                   ),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(35.0),
+                    ),
+                    color: Colors.white,
+                    elevation: 0,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                      ]
+                    )
+                  )
+                 )
+              ])
+            )
+          ]
         )
     );
-
   }
   Widget scrollView(){
     return Scaffold(

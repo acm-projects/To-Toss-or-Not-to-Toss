@@ -1,0 +1,18 @@
+image resizing
+model sends back an array
+first num - org %
+second num - rec%
+resize image on what?
+
+water1: 1.98 R
+card1: 2.0855 R
+cardHand: null
+cardThree: 4.4 R
+
+break1: 3,685 O
+fruit1: 9.905 O
+giraffe1: 1.9 O
+
+coffee1: 2.766 R
+carton1: 3.73 R
+soda1: 3.78 R

@@ -14,10 +14,11 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.0 <3.0.0"
 
 dependencies:
-  image_picker:
+  image_picker: ^0.6.2+3
+  tflite: ^1.0.4
   flutter:
     sdk: flutter
 
@@ -46,6 +47,9 @@ flutter:
    - assets/tree.png
    - assets/city.png
    - assets/flatground.jpg
+   - assets/tflite/model_unquant.tflite
+   - assets/tflite/recycleModel.tflite
+   - assets/labels.txt
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
