@@ -5,9 +5,6 @@ import 'package:toss_menu/KYlogin.dart';
 import 'package:toss_menu/picture.dart';
 import 'package:toss_menu/gallery.dart';
 
-
-
-
 class MainMenu extends StatefulWidget {
   @override
   MainMenuState createState() {
@@ -80,25 +77,30 @@ class MainMenuState extends State<MainMenu> {
         ),
       );
     }
-
     return new Scaffold(
       appBar: new AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
         title: _appBarTitle,
-        backgroundColor: _appBarBackgroundColor,
+        backgroundColor: Colors.white,//_appBarBackgroundColor,
         centerTitle: true,
         elevation: 0.0,
-        
+        textTheme: TextTheme(
+          title: TextStyle(
+            color: Colors.white,
+            fontSize: 22.0,
+          ),
+        ),
       ),
       drawer: new Drawer(
         child: new ListView(
           children: <Widget>[
             new Container(
-                child: new ListTile(
-                    leading: new Image.asset('assets/tree.png'),
-                    title: Text("tishaarora2@gmail.com")),
-                margin: new EdgeInsetsDirectional.only(top: 20.0),
-                color: Colors.white,
-                constraints: BoxConstraints(maxHeight: 90.0, minHeight: 90.0)),
+              child: new ListTile(
+                leading: new Image.asset('assets/tree.png'),
+                title: Text("tishaarora2@gmail.com")),
+              margin: new EdgeInsetsDirectional.only(top: 20.0),
+              color: Colors.white,
+              constraints: BoxConstraints(maxHeight: 90.0, minHeight: 90.0)),
             new SizedBox(
               child: new Center(
                 child: new Container(
@@ -126,7 +128,7 @@ class MainMenuState extends State<MainMenu> {
               () => new MyApp()),
       //new MenuItem("Scoreboard", 'assets/tree.png', Colors.black,
               //() => new scoreboard()),
-      new MenuItem("Take Picture", 'assets/tree.png', Colors.black,
+      new MenuItem("Take Picture",'assets/tree.png' , Colors.black,
               () => new Picture()),
       new MenuItem("Tree Progress", 'assets/tree.png', Colors.black,
               () => new Gallery()),

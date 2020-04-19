@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+//void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter login UI',
       theme: ThemeData(
         // This is the theme of your application.
@@ -44,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
+    
     final emailField = TextField(
       obscureText: false,
       style: style,
@@ -82,12 +83,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
-    return Scaffold(
-      body: Center(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: new Center(
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/flatground.jpg'),
+              image: AssetImage('assets/loginback.png'),
               fit: BoxFit.fitWidth,
               )
           ),
@@ -99,10 +101,6 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 SizedBox(
                   height: 155.0,
-                  /*child: Image.asset(
-                    "assets/tree.png",
-                    fit: BoxFit.contain,
-                  ),*/
                 ),
                 SizedBox(height: 45.0),
                 emailField,

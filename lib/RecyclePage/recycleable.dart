@@ -1,8 +1,5 @@
 import 'dart:async';
 import 'dart:ui';
-
-//import 'package:first_toss/question.dart';
-//import 'package:menu_test/main.dart';
 import 'package:toss_menu/RecyclePage/recycleHeader.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -13,7 +10,8 @@ import 'package:toss_menu/mainmenu.dart';
 class Recycleable extends StatefulWidget {
 
   final String val;
-  final Future<File> image;
+  //final Future<File> image;
+  final File image;
   Recycleable({Key key, @required this.image, this.val}): super(key: key);
 
   @override
@@ -23,12 +21,10 @@ class _RecycleableState extends State<Recycleable>
   with SingleTickerProviderStateMixin {
 
   String val;
-  Future<File> image;
+  //Future<File>image;
+  File image;
   _RecycleableState(this.image, this.val);
 
-  //ScrollController _scrollViewController;
-  //TabController _tabController;
-//////////
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,8 +35,8 @@ class _RecycleableState extends State<Recycleable>
             floating: false,
             delegate: NetworkingPageHeader(
               minExtent: 70.0,
-              maxExtent: 500.0, //fix to fit
-              image: image,
+              maxExtent: 450.0, //fix to fit
+              image: image ,
             ),
           ),
             SliverFixedExtentList(
@@ -67,8 +63,10 @@ class _RecycleableState extends State<Recycleable>
                           margin: EdgeInsets.all(20.0),
                           child: const ListTile(
                             title: Text('Thank you for your contribution to the environment!',
+                            textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.black, 
-                            fontSize: 38.0, fontWeight: FontWeight.bold)),
+                            fontSize: 38.0, fontWeight: FontWeight.w500, 
+                            )),
                           ),
                           
                         ),
@@ -86,7 +84,6 @@ class _RecycleableState extends State<Recycleable>
                               context,
                               MaterialPageRoute(builder: (context) 
                               => MainMenu(),
-                              
                               )
                             );
                           },
@@ -122,7 +119,7 @@ class _RecycleableState extends State<Recycleable>
               ]),
             ),
             SliverFixedExtentList(
-              itemExtent: 500,
+              itemExtent: 300,
               delegate: SliverChildListDelegate([
                 //Container(color: Colors.white),
                  Container(
@@ -146,84 +143,24 @@ class _RecycleableState extends State<Recycleable>
                   )
                  )
               ])
-            )
+            ),
           ]
         )
     );
   }
-  Widget scrollView(){
-    return Scaffold(
-      body:
-    CustomScrollView(
-      slivers: <Widget>[
-        /*SliverAppBar(
-          //pinned: true,
-          floating: false,
-          expandedHeight: 120.0,
-          flexibleSpace: FlexibleSpaceBar(
-            title: Text('Basic Slivers'),
-          ),
-        ),*/
-        SliverToBoxAdapter(
-          child:
-            Stack(
-              children: <Widget>[
-                Container(
-                  child:
-                  showImage(image),
-                  //showImage(image),
-                ),
-                Positioned(
-                  bottom: -170,
-                  child:
-                  ClipRRect(
-                    borderRadius: 
-                    BorderRadius.circular(30.0),
-                    child: 
-                    Container(
-                      alignment: Alignment.topCenter,
-                      width: 415,
-                      height: 200,
-                      color: Colors.white,
-                    ),
-                  )
-                )
-              ],
-              overflow: Overflow.visible,
-          )
-        ),
-        
-        SliverFixedExtentList(
-          itemExtent: 50,
-          delegate: SliverChildListDelegate([
-            ClipRRect(
-              borderRadius: 
-              BorderRadius.circular(15.0),
-              child: Container(
-                color: Colors.orange,
-                )
-            ),
-            Container(color: Colors.green),
-            Container(color: Colors.blue),
-          ]),
-        ),
-        SliverToBoxAdapter(
-          child: Container(
-            color: Colors.yellow,
-            padding: const EdgeInsets.all(8.0),
-            child: Text('Grid Header', style: TextStyle(fontSize: 24)),
-          ),
-        ),
-
-      ],
-    )
-    );
-  }
-  
-  pickImageFrom(ImageSource source) {
+ 
+  /* pickImageFrom(ImageSource source) {
     setState(() {
       image = ImagePicker.pickImage(source: source);
     });
+  } */
+  Widget show(File imageF)
+  {
+    return Image.file( 
+      File(imageF.readAsStringSync()),
+      fit:BoxFit.fitWidth,
+      
+    );
   }
   Widget showImage(Future<File> imageF) {
     return FutureBuilder<File>(

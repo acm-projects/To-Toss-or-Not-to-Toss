@@ -14,8 +14,8 @@ class NetworkingPageHeader implements SliverPersistentHeaderDelegate {
   });
   final double minExtent;
   final double maxExtent;
-  final Future<File> image;
-
+  //final Future<File> image;
+  final File image;
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -23,7 +23,8 @@ class NetworkingPageHeader implements SliverPersistentHeaderDelegate {
       fit: StackFit.expand,
       children: [
         //Image.file(
-        showImage(image),
+        //showImage(image),
+        show(image),
         //fit: BoxFit.cover,
         Container(
           decoration: BoxDecoration(
@@ -54,13 +55,15 @@ class NetworkingPageHeader implements SliverPersistentHeaderDelegate {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         const ListTile(
-                          leading: Icon(Icons.check_circle_outline,
+                          trailing: Icon(Icons.check_circle,
                               size: 55, color: Colors.green),
                           title: Text('Your item is recycleable!',
+                          textAlign: TextAlign.center,
+                          
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 35.0,
-                                  fontWeight: FontWeight.w500)),
+                                  fontSize: 37.0,
+                                  fontWeight: FontWeight.w400)),
                         ),
                       ],
                     ),
@@ -77,7 +80,13 @@ class NetworkingPageHeader implements SliverPersistentHeaderDelegate {
     // more complex formula: starts fading out text when shrinkOffset > minExtent
     //return 1.0 - max(0.0, (shrinkOffset - minExtent)) / (maxExtent - minExtent);
   }
-
+  Widget show(File imageF)
+  {
+    return Image.file(imageF,
+    fit:BoxFit.cover,
+    //alignment: Alignment.topCenter,
+    );
+  }
   Widget showImage(Future<File> imageF) {
     return FutureBuilder<File>(
       future: imageF,

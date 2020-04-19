@@ -1,7 +1,5 @@
-import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:tflite/tflite.dart';
 
 class Gallery extends StatefulWidget {
   @override
@@ -9,8 +7,21 @@ class Gallery extends StatefulWidget {
 }
 
 class _GalleryState extends State<Gallery> {
-  List _outputs;
+  @override
+  Widget build(BuildContext context) {
+    
+    return Scaffold(
+      body: Container(
+
+      ),
+    );
+  }
+  
+}
+
+  /* List _outputs;
   File _image;
+  Future<File> futureImage;
   bool _loading = false;
 
   @override
@@ -34,50 +45,76 @@ class _GalleryState extends State<Gallery> {
         child: CircularProgressIndicator(),
       )
       : Container(
-        width: MediaQuery.of(context).size.width,
+        //width: MediaQuery.of(context).size.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _image == null ? 
+            _image == null ? //block to add image
             Container() : 
-            Image.file(_image,
-            height: 300,),
+             Image.file(_image,
+             height: 300,),
+            
             SizedBox(
               height: 20,
             ),
-            _outputs != null
-                ? Text(
-              "${_outputs[0]["label"]}",
-              //_outputs.toString(),
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
-                background: Paint()..color = Colors.white,
-              ),
+            _outputs != null ?
+                Text(
+             // "${_outputs[0]["label"]}",
+              (_outputs.toString()),
             )
-                : Container()
+            : Container()
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: pickImage,
+        onPressed: () async {
+          int value = await pickImage();
+          if(value == 1)
+          {
+            goToRecycle();
+          }else{
+            goToNotRecycle();
+          }
+
+        },
         child: Icon(Icons.image),
       ),
     );
   }
-
-  pickImage() async {
+  void goToRecycle()
+  {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) 
+      => Recycleable(image: _image
+      , val: "hry")
+      )
+    );
+  }
+  void goToNotRecycle()
+  {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) 
+      => NotRecycleable(image: _image
+      , val: "hry")
+      )
+    );
+  }
+  Future<int> pickImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    if (image == null) return null;
+    if (image == null) 
+      return null;
     setState(() {
       _loading = true;
       _image = image;
     });
-    classifyImage(image);
+    int wait = await classifyImage(image); //waits to returns int value
+    return wait; //returns 1 or 0
   }
 
-  classifyImage(File image) async {
+  Future<int> classifyImage(File image) async {
     var output = await Tflite.runModelOnImage(
       path: image.path,
       numResults: 1,
@@ -89,6 +126,19 @@ class _GalleryState extends State<Gallery> {
       _loading = false;
       _outputs = output;
     });
+    if(output != null)
+    {
+      if(_outputs[0]["label"].toString().contains("Rec"))
+      {
+        return 1;
+      }
+      else if(_outputs[0]["label"].toString().contains("Org"))
+      {
+        return 0;
+      }
+    }
+    
+      return -1;
   }
 
   loadModel() async {
@@ -103,4 +153,4 @@ class _GalleryState extends State<Gallery> {
     Tflite.close();
     super.dispose();
   }
-}
+} */

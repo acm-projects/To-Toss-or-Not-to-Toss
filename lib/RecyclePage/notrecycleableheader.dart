@@ -10,20 +10,22 @@ class NotNetworkingPageHeader implements SliverPersistentHeaderDelegate {
   NotNetworkingPageHeader({
     this.minExtent,
     @required this.maxExtent,
-    this.image,
+    this.imageF,
   });
   final double minExtent;
   final double maxExtent;
-  final Future<File> image;
+  //final Future<File> image;
+  final File imageF;
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Stack(
       fit: StackFit.expand,
       children: [
         //Image.file(
-        showImage(image),
+        //showImage(image),
+        show(imageF),
         //fit: BoxFit.cover,
         Container(
           decoration: BoxDecoration(
@@ -38,11 +40,11 @@ class NotNetworkingPageHeader implements SliverPersistentHeaderDelegate {
         ),
         Positioned(
             //top:310,
-            left: -3,
+            left: -5,
             right: -5,
             bottom: -24.0,
             child: SizedBox(
-                height: 100,
+                height: 130,
                 child: Container(
                   margin: EdgeInsets.fromLTRB(0, 11, 0, 0), //remove
                   child: Card(
@@ -78,7 +80,14 @@ class NotNetworkingPageHeader implements SliverPersistentHeaderDelegate {
     // more complex formula: starts fading out text when shrinkOffset > minExtent
     //return 1.0 - max(0.0, (shrinkOffset - minExtent)) / (maxExtent - minExtent);
   }
-
+  Widget show(File imageF)
+  {
+    return Image.file(imageF,
+    fit:BoxFit.cover,
+    //alignment: Alignment.topCenter,
+    
+    );
+  }
   Widget showImage(Future<File> imageF) {
     return FutureBuilder<File>(
       future: imageF,

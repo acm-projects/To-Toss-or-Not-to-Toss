@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:ui';
-
-//import 'package:first_toss/question.dart';
 import 'package:toss_menu/RecyclePage/notrecycleableHeader.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -11,8 +9,9 @@ import 'package:toss_menu/mainmenu.dart';
 
 class NotRecycleable extends StatefulWidget {
 
-  final String val;
-  final Future<File> image;
+  final int val;
+  //final Future<File> image;
+  final File image;
   NotRecycleable({Key key, @required this.image, this.val}): super(key: key);
 
   @override
@@ -21,29 +20,23 @@ class NotRecycleable extends StatefulWidget {
 class _NotRecycleableState extends State<NotRecycleable> 
   with SingleTickerProviderStateMixin {
 
-  String val;
-  Future<File> image;
+  int val;
+  File image;
+  //Future<File> image;
   _NotRecycleableState(this.image, this.val);
 
-  //ScrollController _scrollViewController;
-  //TabController _tabController;
-//////////
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: AppBar(
-         // title: Text('Not Recycleable'),
-         // backgroundColor: Colors.teal,
-        //),
         body: CustomScrollView(
           slivers: <Widget>[
             SliverPersistentHeader(
             pinned: false,
-            floating: true,
+            floating: false,
             delegate: NotNetworkingPageHeader(
-              minExtent: 270.0,
-              maxExtent: 450.0,
-              image: image,
+              minExtent: 0,
+              maxExtent: 400.0,
+              imageF: image,
             ),
           ),
             SliverFixedExtentList(
@@ -104,7 +97,9 @@ class _NotRecycleableState extends State<NotRecycleable>
                           shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(30.0),
                             side: BorderSide(color: Colors.teal)),
-                          onPressed: () {},
+                          onPressed: () {
+                            //getImageSize(image);
+                          },
                           color: Colors.indigo,
                           textColor: Colors.white,
                           child: Text("You Gained 5 Points!",
@@ -120,83 +115,13 @@ class _NotRecycleableState extends State<NotRecycleable>
           ],
         )
     );
-
-  }
-
-  Widget scrollView(){
-    return Scaffold(
-      body:
-    CustomScrollView(
-      slivers: <Widget>[
-        /*SliverAppBar(
-          //pinned: true,
-          floating: false,
-          expandedHeight: 120.0,
-          flexibleSpace: FlexibleSpaceBar(
-            title: Text('Basic Slivers'),
-          ),
-        ),*/
-        SliverToBoxAdapter(
-          child:
-            Stack(
-              children: <Widget>[
-                Container(
-                  child:
-                  showImage(image),
-                  //showImage(image),
-                ),
-                Positioned(
-                  bottom: -170,
-                  child:
-                  ClipRRect(
-                    borderRadius: 
-                    BorderRadius.circular(30.0),
-                    child: 
-                    Container(
-                      alignment: Alignment.topCenter,
-                      width: 415,
-                      height: 200,
-                      color: Colors.white,
-                    ),
-                  )
-                )
-              ],
-              overflow: Overflow.visible,
-          )
-        ),
-        
-        SliverFixedExtentList(
-          itemExtent: 50,
-          delegate: SliverChildListDelegate([
-            ClipRRect(
-              borderRadius: 
-              BorderRadius.circular(15.0),
-              child: Container(
-                color: Colors.orange,
-                )
-            ),
-            Container(color: Colors.green),
-            Container(color: Colors.blue),
-          ]),
-        ),
-        SliverToBoxAdapter(
-          child: Container(
-            color: Colors.yellow,
-            padding: const EdgeInsets.all(8.0),
-            child: Text('Grid Header', style: TextStyle(fontSize: 24)),
-          ),
-        ),
-
-      ],
-    )
-    );
   }
   
-  pickImageFrom(ImageSource source) {
+  /* pickImageFrom(ImageSource source) {
     setState(() {
       image = ImagePicker.pickImage(source: source);
     });
-  }
+  } */
   Widget showImage(Future<File> imageF) {
     return FutureBuilder<File>(
       future: imageF,
