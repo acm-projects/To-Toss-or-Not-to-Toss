@@ -67,7 +67,7 @@ class _PictureState extends State<Picture> {
               ), 
             Container(
               constraints: BoxConstraints(
-                maxWidth: 400,
+                maxWidth: 300,
               ),
               child: Text(
                 'Find out if objects are recyclable, one image at a time',
@@ -92,7 +92,7 @@ class _PictureState extends State<Picture> {
                     side: BorderSide(color: Colors.teal)),
                   onPressed: () async {
                     int value = await pickImageCamera();
-                    getImageSize(_image);
+                    //getImageSize(_image);
                     if(value == 1)
                     {
                       goToRecycle();
@@ -123,7 +123,7 @@ class _PictureState extends State<Picture> {
                 side: BorderSide(color: Colors.teal)),
                 onPressed: () async {
                   int value = await pickImageGallery();
-                  getImageSize(_image);
+                  //getImageSize(_image);
                   if(value == 1)
                   {
                     goToRecycle();
@@ -131,7 +131,7 @@ class _PictureState extends State<Picture> {
                     goToNotRecycle();
                   }
                 },
-                color: Colors.indigo,
+                color: Colors.indigo[500],
                 textColor: Colors.white,
                 child: Text("Upload From Gallery",
                   style: TextStyle(fontSize: 25,
@@ -145,13 +145,13 @@ class _PictureState extends State<Picture> {
       ),
     );
   }
-  Future<void> getImageSize(File im) async {
+  /* Future<void> getImageSize(File im) async {
     //File image = new File('image.png'); // Or any other way to get a File instance.
     var decodedImage = await decodeImageFromList(im.readAsBytesSync());
     print(decodedImage.width);
     print(decodedImage.height.toDouble());
     height = decodedImage.height;
-  }
+  } */
   void goToRecycle()
   {
     Navigator.push(
@@ -206,7 +206,7 @@ class _PictureState extends State<Picture> {
       _loading = false;
       _outputs = output;
     });
-    if(output != null)
+    if(_outputs != null && _outputs.isNotEmpty)
     {
       if(_outputs[0]["label"].toString().contains("Rec"))
       {

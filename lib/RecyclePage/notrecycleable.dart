@@ -102,7 +102,7 @@ class _NotRecycleableState extends State<NotRecycleable>
                           },
                           color: Colors.indigo,
                           textColor: Colors.white,
-                          child: Text("You Gained 5 Points!",
+                          child: Text("Tree Progress",
                             style: TextStyle(fontSize: 29)),
                         ),
                         )

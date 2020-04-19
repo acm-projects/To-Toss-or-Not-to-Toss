@@ -1,4 +1,7 @@
 
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class Gallery extends StatefulWidget {
@@ -9,148 +12,95 @@ class Gallery extends StatefulWidget {
 class _GalleryState extends State<Gallery> {
   @override
   Widget build(BuildContext context) {
-    
-    return Scaffold(
-      body: Container(
-
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Home(),
     );
   }
-  
+}
+class Home extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => HomeState();
 }
 
-  /* List _outputs;
-  File _image;
-  Future<File> futureImage;
-  bool _loading = false;
+class HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  Animation<Offset> offset;
+  File image1 = File('assets/forest1.png');
+  File image2 = File('assets/forest2.png');
+  File image3 = File('assets/forest3.png');
+  
+  int count = 3; 
 
   @override
   void initState() {
     super.initState();
-    _loading = true;
 
-    loadModel().then((value) {
-      setState(() {
-        _loading = false;
-      });
-    });
+    controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 6))
+        ..repeat(reverse: true);
+
+    offset = Tween<Offset>(begin: Offset(-0.45,0), end: Offset(0.43, 0.0))
+        .animate(controller);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _loading
-      ? Container(
-        alignment: Alignment.center,
-        child: CircularProgressIndicator(),
-      )
-      : Container(
-        //width: MediaQuery.of(context).size.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _image == null ? //block to add image
-            Container() : 
-             Image.file(_image,
-             height: 300,),
-            
-            SizedBox(
-              height: 20,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+    home: new Scaffold(
+      body: Stack(
+        children: <Widget>[
+          Center(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.white, 
+                  new Color.fromRGBO(255, 252, 243, 1.0)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                )
+               ),
             ),
-            _outputs != null ?
-                Text(
-             // "${_outputs[0]["label"]}",
-              (_outputs.toString()),
-            )
-            : Container()
-          ],
-        ),
+          ),
+          Positioned(
+            child: 
+            OverflowBox(
+              alignment: Alignment.bottomCenter,
+                child: SlideTransition(
+                  position: offset,
+                    child: new OverflowBox(
+                    alignment: Alignment.bottomCenter,
+                    minWidth: 0.0, 
+                    minHeight: 150.0, 
+                    maxWidth: 800.0,
+                    child: new Image(
+                      image: show(),
+                      //image: new AssetImage('assets/forest1.png'), 
+                      fit: BoxFit.cover,) 
+                    ),
+                  ), 
+              ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          int value = await pickImage();
-          if(value == 1)
-          {
-            goToRecycle();
-          }else{
-            goToNotRecycle();
-          }
-
-        },
-        child: Icon(Icons.image),
-      ),
+    )
     );
   }
-  void goToRecycle()
+  
+  AssetImage show()
   {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) 
-      => Recycleable(image: _image
-      , val: "hry")
-      )
+    if(count <= 1)
+    return AssetImage( 
+      'assets/forest1.png',
+    );
+    else if(count == 2)
+    return AssetImage( 
+      'assets/forest2.png',
+    );
+    else 
+    return AssetImage( 
+      'assets/forest3.png',
     );
   }
-  void goToNotRecycle()
-  {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) 
-      => NotRecycleable(image: _image
-      , val: "hry")
-      )
-    );
-  }
-  Future<int> pickImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    if (image == null) 
-      return null;
-    setState(() {
-      _loading = true;
-      _image = image;
-    });
-    int wait = await classifyImage(image); //waits to returns int value
-    return wait; //returns 1 or 0
-  }
-
-  Future<int> classifyImage(File image) async {
-    var output = await Tflite.runModelOnImage(
-      path: image.path,
-      numResults: 1,
-      threshold: 0.5,
-      imageMean: 128,
-      imageStd: 128,
-    );
-    setState(() {
-      _loading = false;
-      _outputs = output;
-    });
-    if(output != null)
-    {
-      if(_outputs[0]["label"].toString().contains("Rec"))
-      {
-        return 1;
-      }
-      else if(_outputs[0]["label"].toString().contains("Org"))
-      {
-        return 0;
-      }
-    }
-    
-      return -1;
-  }
-
-  loadModel() async {
-    await Tflite.loadModel(
-      model: "assets/tflite/recycleModel.tflite",
-      labels: "assets/labels.txt",
-    );
-  }
-
-  @override
-  void dispose() {
-    Tflite.close();
-    super.dispose();
-  }
-} */
+}

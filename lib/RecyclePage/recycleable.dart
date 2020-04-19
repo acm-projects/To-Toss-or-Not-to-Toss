@@ -20,6 +20,7 @@ class Recycleable extends StatefulWidget {
 class _RecycleableState extends State<Recycleable> 
   with SingleTickerProviderStateMixin {
 
+    
   String val;
   //Future<File>image;
   File image;
@@ -28,6 +29,7 @@ class _RecycleableState extends State<Recycleable>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
         body: CustomScrollView(
           slivers: <Widget>[
             SliverPersistentHeader(
@@ -59,16 +61,18 @@ class _RecycleableState extends State<Recycleable>
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
+                        
                         Container(
+                          
                           margin: EdgeInsets.all(20.0),
                           child: const ListTile(
                             title: Text('Thank you for your contribution to the environment!',
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.black, 
-                            fontSize: 38.0, fontWeight: FontWeight.w500, 
+                            fontSize: 33,
+                            fontWeight: FontWeight.w500, 
                             )),
                           ),
-                          
                         ),
                         SizedBox(
                           width: 310,

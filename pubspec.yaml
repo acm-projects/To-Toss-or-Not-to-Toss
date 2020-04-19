@@ -52,6 +52,10 @@ flutter:
    - assets/labels.txt
    - assets/menu.jpg
    - assets/loginback.png
+   - assets/forest1.png
+   - assets/forest2.png
+   - assets/forest3.png
+   - assets/recmenu.png
 
   fonts:
     - family: Raleway
@@ -61,7 +65,9 @@ flutter:
     - family: Raleway Bold
       fonts:
         - asset: fonts/Raleway-ExtraBold.ttf
-
+    - family: MyFlutterApp
+      fonts:
+        - asset: fonts/MyFlutterApp.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
