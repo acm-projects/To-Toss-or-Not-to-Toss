@@ -56,6 +56,15 @@ flutter:
    - assets/forest2.png
    - assets/forest3.png
    - assets/recmenu.png
+   - assets/KYwhite.png
+   - assets/maintrees.png
+   - assets/mountmain.png
+   - assets/forest11.png
+   - assets/forest22.png
+   - assets/forest33.png
+   - assets/uploadpic.png
+   - assets/singletree.png
+   - assets/camera.png
 
   fonts:
     - family: Raleway

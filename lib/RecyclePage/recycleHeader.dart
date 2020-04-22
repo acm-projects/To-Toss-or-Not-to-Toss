@@ -55,15 +55,18 @@ class NetworkingPageHeader implements SliverPersistentHeaderDelegate {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         const ListTile(
-                          trailing: Icon(Icons.check_circle,
-                              size: 55, color: Colors.green),
-                          title: Text('Your item is recycleable!',
+                          trailing: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 5, 25, 0),
+                            child: Icon(Icons.check_circle,
+                                size: 65, color: Colors.green),
+                          ),
+                          title: Text('Your item is recyclable!',
                           textAlign: TextAlign.center,
-                          
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 37.0,
-                                  fontWeight: FontWeight.w400)),
+                                  fontWeight: FontWeight.w100,
+                                  fontFamily: 'Raleway')),
                         ),
                       ],
                     ),

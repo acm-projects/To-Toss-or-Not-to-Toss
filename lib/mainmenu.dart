@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 //import 'package:menu_test/scoreboard.dart';
 import 'package:toss_menu/menuitem.dart';
 import 'package:toss_menu/KYlogin.dart';
@@ -29,6 +30,9 @@ class MainMenuState extends State<MainMenu> {
     _selectedMenuItem = _menuItems.first;
     _appBarTitle = new Text(_menuItems.first.title);
     _appBarBackgroundColor = _menuItems.first.color;
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp
+  ]);
   }
 
   _getMenuItemWidget(MenuItem menuItem) {
@@ -55,7 +59,7 @@ class MainMenuState extends State<MainMenu> {
                   ? Colors.grey[200]
                   : Colors.white),
           child: new ListTile(
-              leading: new Image.asset(menuItem.icon, fit: BoxFit.fitWidth, scale: 3.9,),
+              leading: new Image.asset(menuItem.icon, fit: BoxFit.fill, scale: 5,),
               onTap: () => _onSelectItem(menuItem),
               title: Text(
                 menuItem.title,
@@ -82,7 +86,7 @@ class MainMenuState extends State<MainMenu> {
     return new Scaffold(
       appBar: new AppBar(
         iconTheme: IconThemeData(color: Colors.black),
-        //title: _appBarTitle,
+        title: _appBarTitle,
         backgroundColor: Colors.white,//_appBarBackgroundColor,
         //centerTitle: true,
         elevation: 0.0,
@@ -98,7 +102,7 @@ class MainMenuState extends State<MainMenu> {
         ],
         /* textTheme: TextTheme(
           title: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 22.0,
           ),
         ), */
@@ -138,11 +142,11 @@ class MainMenuState extends State<MainMenu> {
     final menuItems = [
       //new MenuItem("Scoreboard", 'assets/tree.png', Colors.black,
               //() => new scoreboard()),
-      new MenuItem("Take Picture",'assets/tree.png' , Colors.black,
+      new MenuItem("Take Picture",'assets/camera.png' , Colors.black,
               () => new Picture()),
-      new MenuItem("Log in/ Sign up", 'assets/tree.png', Colors.black,
+      new MenuItem("Log in/Sign up", 'assets/uploadpic.png', Colors.black,
               () => new MyApp()),
-      new MenuItem("Tree Progress", 'assets/tree.png', Colors.black,
+      new MenuItem("Tree Progress", 'assets/singletree.png', Colors.black,
               () => new Gallery()),
     ];
     return menuItems;

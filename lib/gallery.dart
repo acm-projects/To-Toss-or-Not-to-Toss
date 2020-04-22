@@ -1,7 +1,5 @@
-
-
 import 'dart:io';
-
+import 'package:toss_menu/globals.dart' as globals;
 import 'package:flutter/material.dart';
 
 class Gallery extends StatefulWidget {
@@ -30,8 +28,6 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   File image2 = File('assets/forest2.png');
   File image3 = File('assets/forest3.png');
   
-  int count = 3; 
-
   @override
   void initState() {
     super.initState();
@@ -56,11 +52,49 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Colors.white, 
-                  new Color.fromRGBO(255, 252, 243, 1.0)],
+                  new Color.fromRGBO(216, 239, 255, 1.0)],
                   begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
+                  end: Alignment.lerp(Alignment.center, 
+                  Alignment.bottomCenter, .5),
                 )
                ),
+            ),
+          ),
+         Padding(
+           padding: const EdgeInsets.all(15.0),
+           child: RaisedButton(
+            elevation: 10,
+            shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(30.0),
+              side: BorderSide(color: new Color.fromRGBO(132, 234, 130, 1.0)),),
+              color: new Color.fromRGBO(132, 234, 130, 1.0),
+              onPressed: () {
+              },
+             padding: const EdgeInsets.all(8.0),
+             child: Text('Recycle more objects to grow your forest!', 
+                    style: TextStyle(fontSize: 30, fontFamily: 'Raleway'), 
+                    textAlign: TextAlign.center),
+           ),
+         ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15, 120, 15, 0),
+            child: 
+            RaisedButton(
+              elevation: 10,
+            shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(30.0),
+              side: BorderSide(color: Colors.amber[400]),),
+              color: Colors.amber[400],
+              onPressed: () {
+                setState(() {
+                  globals.count--;
+                });
+              },
+              padding: const EdgeInsets.all(8.0),
+              child: Text('You currently have ' + 
+              ((globals.count * 5).toString() + ' points!'), 
+                style: TextStyle(fontSize: 30, fontFamily: 'Raleway'), 
+                textAlign: TextAlign.center,),
             ),
           ),
           Positioned(
@@ -90,17 +124,17 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   
   AssetImage show()
   {
-    if(count <= 1)
+    if(globals.count<= 1)
     return AssetImage( 
-      'assets/forest1.png',
+      'assets/forest11.png',
     );
-    else if(count == 2)
+    else if(globals.count == 2)
     return AssetImage( 
-      'assets/forest2.png',
+      'assets/forest22.png',
     );
     else 
     return AssetImage( 
-      'assets/forest3.png',
+      'assets/forest33.png',
     );
   }
 }

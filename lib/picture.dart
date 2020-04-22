@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:async';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,9 @@ class _PictureState extends State<Picture> {
         _loading = false;
       });
     });
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+  ]);
   }
 
   @override
@@ -54,9 +58,9 @@ class _PictureState extends State<Picture> {
                 maxWidth: 400,
               ),
               child: Text(
-                'cycle',
+                'Keep or Yeet',
                 textAlign: TextAlign.center,
-                 style: TextStyle(fontSize: 70.0, 
+                 style: TextStyle(fontSize: 54.0, 
                  fontFamily: 'Raleway',
                  fontWeight: FontWeight.w900
                 ),

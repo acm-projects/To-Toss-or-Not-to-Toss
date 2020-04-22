@@ -56,9 +56,10 @@ class _NotRecycleableState extends State<NotRecycleable>
                         Container(
                           margin: EdgeInsets.all(20.0),
                           child: const ListTile(
-                            title: Text('This object is not recycleable, please try again.',
+                            title: Text('This object is not recyclable, please try again.',
+                            textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.black, 
-                            fontSize: 38.0, fontWeight: FontWeight.bold)),
+                            fontSize: 38.0, fontFamily: 'Raleway', fontWeight: FontWeight.bold)),
                           ),
                           
                         ),
@@ -82,17 +83,18 @@ class _NotRecycleableState extends State<NotRecycleable>
                           color: Colors.teal,
                           textColor: Colors.white,
                           child: Text("Continue Scanning",
-                            style: TextStyle(fontSize: 29)),
+                            style: TextStyle(fontSize: 29,
+                            fontFamily: 'Raleway')),
                         ),
                         ),
                         SizedBox( 
                           height: 26,
                         ),
-                        SizedBox(
+                        /*SizedBox(
                           width: 310,
                           height: 60,
                           child:
-                        RaisedButton(
+                         RaisedButton(
                           elevation: 15,
                           shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(30.0),
@@ -103,8 +105,20 @@ class _NotRecycleableState extends State<NotRecycleable>
                           color: Colors.indigo,
                           textColor: Colors.white,
                           child: Text("Tree Progress",
-                            style: TextStyle(fontSize: 29)),
-                        ),
+                            style: TextStyle(fontSize: 29,
+                            fontFamily: 'Raleway')),
+                        ), 
+                        )*/
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(
+                            'Try recycling objects like paper, plastic, glass, and aluminum.',
+                             textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width/15,
+                              fontFamily: 'Raleway',
+                            ),
+                          ),
                         )
                       ],
                     ),

@@ -7,6 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       debugShowCheckedModeBanner: false,
       title: 'Flutter login UI',
       theme: ThemeData(
@@ -45,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    
+     
     final emailField = TextField(
       obscureText: false,
       style: style,
@@ -71,50 +72,61 @@ class _MyHomePageState extends State<MyHomePage> {
     final loginButon = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
-      color: Colors.indigo[600],
+      color: Colors.indigo[500],
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () {},
         child: Text("Login",
             textAlign: TextAlign.center,
-            style: style.copyWith(
-                color: Colors.white, fontWeight: FontWeight.bold)),
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold,
+                fontFamily: 'Raleway', fontSize: 22)),
       ),
     );
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: new Center(
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/loginback.png'),
-              fit: BoxFit.fitWidth,
+              image: AssetImage('assets/mountmain.png'),
+              fit: BoxFit.cover,
+              alignment: Alignment.bottomCenter
               )
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(36.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  height: 155.0,
-                ),
-                SizedBox(height: 45.0),
-                emailField,
-                SizedBox(height: 25.0),
-                passwordField,
-                SizedBox(
-                  height: 35.0,
-                ),
-                loginButon,
-                SizedBox(
-                  height: 15.0,
-                ),
-              ],
+          child: ListView(
+              children: <Widget> [ Padding(
+              padding: const EdgeInsets.fromLTRB(26, 0, 26, 0),
+              child: Column(
+                //crossAxisAlignment: CrossAxisAlignment.center,
+                //mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  /* Image.asset('assets/KYwhite.png', 
+                  scale: 2.5,) */
+                  Text('Log in to keep track of your tree progress!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 32, fontFamily: 'Raleway', 
+                  color: Colors.indigo, decorationThickness: 0),
+                  ),
+                  SizedBox(
+                    height: 139.0,
+                  ),
+                  SizedBox(height: 45.0),
+                  emailField,
+                  SizedBox(height: 25.0),
+                  passwordField,
+                  SizedBox(
+                    height: 35.0,
+                  ),
+                  loginButon,
+                  // SizedBox(
+                  //   height: 5.0,
+                  // ),
+                ],
+              ),
             ),
+            ]
           ),
         ),
       ),

@@ -58,12 +58,18 @@ class NotNetworkingPageHeader implements SliverPersistentHeaderDelegate {
                       children: <Widget>[
                         const ListTile(
                           leading: Icon(Icons.cancel,
-                              size: 55, color: Colors.red),
-                          title: Text('Not Recycleable!',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 36.0,
-                                  fontWeight: FontWeight.bold)),
+                              size: 65, color: Colors.red),
+                          title: Padding(
+                            padding: const 
+                            EdgeInsets.fromLTRB(0, 0, 27, 0),
+                            child: Text('Your item is not Recyclable!',
+                            textAlign: TextAlign.center ,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 36.0,
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeight.bold)),
+                          ),
                         ),
                       ],
                     ),
